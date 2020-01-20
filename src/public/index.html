@@ -76,9 +76,11 @@
     {{#each healthCheckResults}}
     <div class="health-check-row">
         <div class="health-check-title-column">
-            <h5><a href="{{path}}">{{path}}</a></h5>
+            <h5 class="status-code status-code-2xx">{{name}}</h5>
+            <h5 class="status-code"> </h5>
+            <h5><a href="{{fullurl}}">{{fullurl}}</a></h5>
         </div>
-        <div class="health-check-status-container {{status}}">
+        <div id="{{name}}" class="health-check-status-container {{status}}">
           <h1>{{status}}</h1>
         </div>
     </div>
@@ -95,3 +97,4 @@
 </script>
 </body>
 </html>
+

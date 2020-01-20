@@ -1,13 +1,24 @@
 const request = require('request');
 
-const port = 3000;
+const axios = require('axios');
 
-const requestUrl = `http://localhost:${port}/return-status/`;
-const interval = 50;
+const port = 443;
 
+// const requestUrl = `http://localhost:${port}/return-status/`;
+
+
+const requestUrl = 'https://api.etherscan.io/api?module=proxy&action=eth_blockNumber';
+
+const interval = 100;
+
+let i = 0;
 const makeDummyCall = () => setTimeout(() => {
   const code = 200 + Math.random() * 399;
-  request.get(`${requestUrl}${code}`);
+
+  axios.get(`${requestUrl}`).then(result => {
+    console.log(`${++i} -> ${parseInt(result.data.result, 16)}`)
+  });
+  //
 
   makeDummyCall();
 }, interval);

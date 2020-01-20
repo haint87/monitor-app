@@ -45,6 +45,6 @@ module.exports = config => {
     Array.isArray(config.healthChecks)
       ? config.healthChecks
       : defaultConfig.healthChecks
-
+      // console.log(defaultConfig.healthChecks.length)
   return config;
 };

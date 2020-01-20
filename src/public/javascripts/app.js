@@ -278,3 +278,33 @@ socket.on('esm_stats', function (data) {
     });
   }
 });
+
+socket.on('data change', data => {
+  changeData(data);
+});
+
+const changeData = (data, options) => {
+  // Don't fade the message in if there is an 'X was typing'
+  // eslint-disable-next-line no-return-assign
+  data.forEach(element =>
+    document.getElementById(element.name).innerHTML = '<h1>' + element.status + (Math.random() * 10).toFixed(0) + '</h1>'
+  );
+  //   .class('color', getUsernameColor(data.username));
+  // var $messageBodyDiv = $('<span class="messageBody">')
+  //   .text(data.message);
+
+  // var typingClass = data.typing ? 'typing' : '';
+  // var $messageDiv = $('<li class="message"/>')
+  //   .data('username', data.username)
+  //   .addClass(typingClass)
+  //   .append($usernameDiv, $messageBodyDiv);
+
+  // addMessageElement($messageDiv, options);
+  console.log(data.length)
+
+
+  // <div id="{{name}}" class="health-check-status-container {{status}}">
+  //   <h1>{{status}}</h1>
+  // </div>
+
+}

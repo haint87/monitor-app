@@ -13,17 +13,25 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "bitcoin-core": "^3.0.0",
     "express": "4.16.4",
     "express-favicon-short-circuit": "1.1.1",
+    "plivo": "^4.1.8",
+    "reload": "^3.0.3",
     "request": "2.88.0",
-    "socket.io": "2.2.0"
+    "socket.io": "2.2.0",
+    "supervisor": "^0.12.0",
+    "telegraf": "^3.35.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "./node_modules/.bin/supervisor -k -e html -i .git/,node_modules/ -- index.js",
     "benchmark": "node tester.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/RafalWilinski/express-status-monitor/tree/master/examples"
+  },
+  "bin": {
+    "reload": "./bin/reload"
   }
 }

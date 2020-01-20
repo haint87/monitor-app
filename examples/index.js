@@ -1,51 +1,51 @@
-/* eslint no-console: "off" */
-const socketIoPort = 2222;
-
+// const socketIoPort = 2222;
 const express = require('express');
+const app = express();
+const path = require('path');
+const server = require('http').createServer(app);
+
+const plivo = require('./../src/helpers/plivo-call')
+const healthChecker = require('./../src/helpers/health-checker');
+const validate = require('./../src/helpers/validate');
+
+const port = process.env.PORT || 3000;
+
+server.listen(port, () => {
+  console.log('Server listening at port %d', port);
+});
+
+
+// const Client = require('bitcoin-core');
 
 // This is optional. If your server uses socket.io already, pass it to config as `webserver` along with it's port.
-const socketio = require('socket.io')(socketIoPort);
+// const socketio = require('socket.io')(socketIoPort);
 
-const app = express();
-const port = process.env.PORT || 3000;
+const botname = 'botmonitor1';
+const BOT_TOKEN = '1033454067:AAHZSmzUacocaXJYn2y9eGr44YC7YZ6HU6k'
 
 app.use(
   require('../index')({
     path: '/',
-    // Use existing socket.io instance.
-    // websocket: socketio,
-
-    // Ignore requests which req.path begins with
-    // ignoreStartsWith: '/return-status',
-
-    // Pass socket.io instance port down to config.
-    // Use only if you're passing your own instance.
-    // port: socketIoPort,
-    healthChecks: [
-      {
-        protocol: 'http',
-        host: 'localhost',
-        port: 3000,
-        path: '/admin/health/ex1',
-        headers: {},
-      },
-      {
-        protocol: 'http',
-        host: 'localhost',
-        port: 3000,
-        path: '/return-status/200',
-        headers: {},
-      },
-    ],
   }),
 );
-app.use(require('express-favicon-short-circuit'));
 
 // Example route throwing requested status code
-app.get('/return-status/:statusCode', (req, res) =>
-  res.sendStatus(req.params.statusCode),
+app.get('/checkstatus', (req, res) =>
+  res.sendStatus(200),
 );
 
-app.listen(port, () => {
-  console.log(`Listening on http://0.0.0.0:${port}`);
-});
+// const Telegraf = require('telegraf')
+
+// const bot = new Telegraf(BOT_TOKEN);
+
+// bot.start(ctx => ctx.reply('Welcome!'))
+// bot.help(ctx => ctx.reply('Send me a sticker'))
+// bot.on('sticker', ctx => ctx.reply('👍'))
+// bot.hears('hi', ctx => ctx.reply('Hey there'))
+// bot.launch()
+
+//  let thanh = "+84902898858"
+//  let nexty_urgent = "99999999"
+
+// plivo.urgent_call(nexty_urgent, thanh)
+

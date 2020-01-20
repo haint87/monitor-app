@@ -51,6 +51,8 @@ const middlewareWrapper = config => {
           }
         }
 
+        // console.log(results)
+
         res.send(render(data));
       });
     } else {
@@ -79,6 +81,7 @@ const middlewareWrapper = config => {
     healthChecker(validatedConfig.healthChecks).then(results => {
       data.healthCheckResults = results;
       res.send(render(data));
+      // console.log(data.healthCheckResults)
     });
   };
   return middleware;
