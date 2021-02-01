@@ -21,7 +21,7 @@ server.listen(port, () => {
 // const socketio = require('socket.io')(socketIoPort);
 
 const botname = 'botmonitor1';
-const BOT_TOKEN = '1033454067:AAHZSmzUacocaXJYn2y9eGr44YC7YZ6HU6k'
+const BOT_TOKEN = '1033454067:'
 
 app.use(
   require('../index')({
@@ -33,19 +33,3 @@ app.use(
 app.get('/checkstatus', (req, res) =>
   res.sendStatus(200),
 );
-
-// const Telegraf = require('telegraf')
-
-// const bot = new Telegraf(BOT_TOKEN);
-
-// bot.start(ctx => ctx.reply('Welcome!'))
-// bot.help(ctx => ctx.reply('Send me a sticker'))
-// bot.on('sticker', ctx => ctx.reply('👍'))
-// bot.hears('hi', ctx => ctx.reply('Hey there'))
-// bot.launch()
-
-//  let thanh = "+84902898858"
-//  let nexty_urgent = "99999999"
-
-// plivo.urgent_call(nexty_urgent, thanh)
-
